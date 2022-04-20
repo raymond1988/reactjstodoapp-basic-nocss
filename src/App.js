@@ -13,7 +13,7 @@ const App = () => {
   const [showUpdate, setShowUpdate] = useState(false)
   const [updateTask, setUpdateTask] = useState('')
   const [taskToEdit, setTaskToEdit] = useState([])
-  const [css, setCss] = useState('')
+
   const handleCreateNewTask = e => {
     e.preventDefault()
     if (newTodo !== '') {
