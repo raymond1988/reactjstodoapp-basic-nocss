@@ -1,13 +1,50 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.todo-list-item{
+  text-decoration: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.todo-list-item-checked{
+  text-decoration: line-through;
+}
+
+ul{
+  list-style: none;
+  /* display: inline-block; */
+  margin-left: 0;
+  padding-left: 0;
+}
+
+ul > * {
+  padding: 0.35rem;
+  margin-top: 0.25rem;
+  justify-content: start;
+  align-items: center;
+
+}
+
+.todo-list-item-container{
+  display: flex;
+
+  z-index: 1;
+}
+
+.deleteBtn, .updateBtn{
+  margin-left: 1rem;
+  display: none;
+  z-index: 2;
+}
+
+.todo-list-item-container:hover > *{
+  display: block;
+}
+
+.show-forms{
+  display: block;
+}
+
+.hide-forms{
+  display: none;
 }
