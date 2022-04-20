@@ -10,32 +10,27 @@
   text-decoration: line-through;
 }
 
-ul{
-  list-style: none;
-  /* display: inline-block; */
-  margin-left: 0;
-  padding-left: 0;
-}
 
-ul > * {
+
+/* ul > * {
   padding: 0.35rem;
   margin-top: 0.25rem;
   justify-content: start;
   align-items: center;
 
 }
-
+ */
 .todo-list-item-container{
   display: flex;
 
   z-index: 1;
 }
 
-.deleteBtn, .updateBtn{
+/* .deleteBtn, .updateBtn{
   margin-left: 1rem;
   display: none;
   z-index: 2;
-}
+} */
 
 .todo-list-item-container:hover > *{
   display: block;

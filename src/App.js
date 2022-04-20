@@ -66,71 +66,76 @@ const App = () => {
   }
 
   return (
-    <div className='App'>
-      <div className='todo-input-wrapper'>
-        <form
-          className={!showUpdate ? 'show-forms' : 'hide-forms'}
-          onSubmit={e => handleCreateNewTask(e)}
-        >
-          <input
-            type='text'
-            placeholder='what else todo?'
-            onChange={e => setnewTodo(e.target.value)}
-            value={newTodo}
-          />
-        </form>
-        {taskToEdit &&
-          taskToEdit.map(task => (
-            <form
-              className={showUpdate ? 'show-forms' : 'hide-forms'}
-              onSubmit={e => handleUpdateTask(e)}
-              key={task.id}
-            >
-              <input
-                type='text'
-                onChange={e => setUpdateTask(e.target.value)}
-                defaultValue={task.name}
-              />
-            </form>
-          ))}
-      </div>
-      <div className='todo-list-wrapper'>
-        <ul className='todo-list'>
-          {todos &&
-            todos.map(todo => (
-              <div key={todo.id} className='todo-list-item-container'>
+    <div className='app'>
+      <div className=''>
+        <div className='todo-input-wrapper'>
+          <form
+            className={!showUpdate ? 'show-forms' : 'hide-forms'}
+            onSubmit={e => handleCreateNewTask(e)}
+          >
+            <input
+              type='text'
+              placeholder='what else todo?'
+              onChange={e => setnewTodo(e.target.value)}
+              value={newTodo}
+            />
+          </form>
+          {taskToEdit &&
+            taskToEdit.map(task => (
+              <form
+                className={showUpdate ? 'show-forms' : 'hide-forms'}
+                onSubmit={e => handleUpdateTask(e)}
+                key={task.id}
+              >
                 <input
-                  type='checkbox'
-                  onChange={() => handleCheckboxClick(todo.id)}
-                  checked={todo.isComplete}
+                  type='text'
+                  onChange={e => setUpdateTask(e.target.value)}
+                  defaultValue={task.name}
                 />
-                <li
-                  className={
-                    !todo.isComplete
-                      ? 'todo-list-item'
-                      : 'todo-list-item-checked'
-                  }
-                >
-                  {todo.name}
-                </li>
-                <button
-                  type='button'
-                  className='deleteBtn'
-                  onClick={() => handleDelete(todo.id)}
-                >
-                  Delete
-                </button>
-                <button
-                  type='button'
-                  className='updateBtn'
-                  onClick={() => handleEdit(todo.id)}
-                >
-                  Edit
-                </button>
-              </div>
+              </form>
             ))}
-        </ul>
-        {todos.length < 1 && <p>Nothing to do :D</p>}
+        </div>
+        <div className='todo-list-wrapper'>
+          <ul className=''>
+            {todos &&
+              todos.map(todo => (
+                <div key={todo.id} className='flex items-center'>
+                  <input
+                    className='mr-3'
+                    type='checkbox'
+                    onChange={() => handleCheckboxClick(todo.id)}
+                    checked={todo.isComplete}
+                  />
+                  <li
+                    className={
+                      !todo.isComplete
+                        ? 'todo-list-item'
+                        : 'todo-list-item-checked'
+                    }
+                  >
+                    {todo.name}
+                  </li>
+                  <div className=''>
+                    <button
+                      type='button'
+                      className='deleteBtn'
+                      onClick={() => handleDelete(todo.id)}
+                    >
+                      Delete
+                    </button>
+                    <button
+                      type='button'
+                      className='updateBtn'
+                      onClick={() => handleEdit(todo.id)}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </div>
+              ))}
+          </ul>
+          {todos.length < 1 && <p>Nothing to do :D</p>}
+        </div>
       </div>
     </div>
   )
