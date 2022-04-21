@@ -2,9 +2,9 @@ import { useState } from 'react'
 import './App.css'
 
 const data = [
-  { id: 1, name: 'go to sleep', isComplete: false },
-  { id: 2, name: 'write react code', isComplete: false },
-  { id: 3, name: 'clean the house', isComplete: true }
+  { id: 1, name: 'Write a blog post', isComplete: false },
+  { id: 2, name: 'Go to the gym', isComplete: false },
+  { id: 3, name: 'Take out the trash', isComplete: true }
 ]
 
 const App = () => {
@@ -67,13 +67,14 @@ const App = () => {
 
   return (
     <div className='app'>
-      <div className=''>
-        <div className='todo-input-wrapper'>
+      <div className='vstack gap-3 pt-4 col-md-5 mx-auto'>
+        <div className=' p-4 shadow-sm'>
           <form
-            className={!showUpdate ? 'show-forms' : 'hide-forms'}
+            className={!showUpdate ? 'show-forms' : 'hide-forms form-control'}
             onSubmit={e => handleCreateNewTask(e)}
           >
             <input
+              className='form-control'
               type='text'
               placeholder='what else todo?'
               onChange={e => setnewTodo(e.target.value)}
@@ -88,6 +89,7 @@ const App = () => {
                 key={task.id}
               >
                 <input
+                  className='form-control'
                   type='text'
                   onChange={e => setUpdateTask(e.target.value)}
                   defaultValue={task.name}
@@ -95,13 +97,13 @@ const App = () => {
               </form>
             ))}
         </div>
-        <div className='todo-list-wrapper'>
-          <ul className=''>
+        <div className=' p-4 shadow-sm'>
+          <ul className='list-group gap-2'>
             {todos &&
               todos.map(todo => (
-                <div key={todo.id} className='flex items-center'>
+                <div key={todo.id} className='d-flex justify-content-start align-items-center'>
                   <input
-                    className='mr-3'
+                    className='form-check-input'
                     type='checkbox'
                     onChange={() => handleCheckboxClick(todo.id)}
                     checked={todo.isComplete}
@@ -109,23 +111,23 @@ const App = () => {
                   <li
                     className={
                       !todo.isComplete
-                        ? 'todo-list-item'
-                        : 'todo-list-item-checked'
+                        ? 'todo-list-item list-group-item border-0 ms-2'
+                        : 'todo-list-item-checked list-group-item border-0 ms-2'
                     }
                   >
                     {todo.name}
                   </li>
-                  <div className=''>
+                  <div className='ms-auto d-flex gap-1'>
                     <button
                       type='button'
-                      className='deleteBtn'
+                      className='deleteBtn btn btn-danger'
                       onClick={() => handleDelete(todo.id)}
                     >
                       Delete
                     </button>
                     <button
                       type='button'
-                      className='updateBtn'
+                      className='updateBtn btn btn-info'
                       onClick={() => handleEdit(todo.id)}
                     >
                       Edit
