@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import AddForm from './components/AddForm'
+import TaskToEditForm from './components/TaskToEditForm'
 
 const data = [
   { id: 1, name: 'Write a blog post', isComplete: false },
@@ -68,40 +70,31 @@ const App = () => {
   return (
     <div className='app'>
       <div className='vstack gap-3 pt-4 col-md-5 mx-auto'>
+        {/* div containing add form and update form */}
         <div className=' p-4 shadow-sm'>
-          <form
-            className={!showUpdate ? 'show-forms' : 'hide-forms form-control'}
-            onSubmit={e => handleCreateNewTask(e)}
-          >
-            <input
-              className='form-control'
-              type='text'
-              placeholder='what else todo?'
-              onChange={e => setnewTodo(e.target.value)}
-              value={newTodo}
-            />
-          </form>
-          {taskToEdit &&
-            taskToEdit.map(task => (
-              <form
-                className={showUpdate ? 'show-forms' : 'hide-forms'}
-                onSubmit={e => handleUpdateTask(e)}
-                key={task.id}
-              >
-                <input
-                  className='form-control'
-                  type='text'
-                  onChange={e => setUpdateTask(e.target.value)}
-                  defaultValue={task.name}
-                />
-              </form>
-            ))}
+          {/* form to add new tasks - component  */}
+          <AddForm
+            handleCreateNewTask={handleCreateNewTask}
+            showUpdate={showUpdate}
+            setnewTodo={setnewTodo}
+            newTodo={newTodo}
+          />
+          {/* form to edit a task - component */}
+          <TaskToEditForm
+            taskToEdit={taskToEdit}
+            showUpdate={showUpdate}
+            handleUpdateTask={handleUpdateTask}
+            setUpdateTask={setUpdateTask}
+          />
         </div>
         <div className=' p-4 shadow-sm'>
           <ul className='list-group gap-2'>
             {todos &&
               todos.map(todo => (
-                <div key={todo.id} className='d-flex justify-content-start align-items-center'>
+                <div
+                  key={todo.id}
+                  className='d-flex justify-content-start align-items-center'
+                >
                   <input
                     className='form-check-input'
                     type='checkbox'
